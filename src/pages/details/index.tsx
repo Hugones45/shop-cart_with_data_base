@@ -22,7 +22,7 @@ export function Details() {
 
   const [details, setDetails] = useState<productsProps | null>(null);
 
-  const url = `http://localhost:3000/products/${id}`;
+  const url = `https://shop-cart-itens.vercel.app/products/${id}`;
 
   useEffect(() => {
     const getData = async () => {
