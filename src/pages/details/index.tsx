@@ -13,6 +13,7 @@ interface productsProps {
   description: string;
 }
 
+
 export function Details() {
   const { id } = useParams();
   const { AddCart } = useProductsContext();
@@ -34,9 +35,10 @@ export function Details() {
   }, []);
 
   function gotToCart() {
-    AddCart(details);
-
-    navigate("/cart");
+    if (details) {
+      AddCart(details);
+      navigate("/cart");
+    }
   }
 
   return (
@@ -44,37 +46,30 @@ export function Details() {
 
       <div className="flex items-center flex-col justify-center gap-10 lg:flex-row">
 
-       <div>  
-        <img 
-          className="w-full rounded-lg max-w-2xl mb-2"
-          src={details?.cover} alt={details?.title} />
-          </div>
-        
-       
-<div className="w-full max-w-6xl"> 
-    <p className="mb-5 text-3xl font-semibold"> {details?.title}</p>
-      <p>{details?.description}</p>
+        <div>
+          <img
+            className="w-full rounded-lg max-w-2xl mb-2"
+            src={details?.cover} alt={details?.title} />
+        </div>
 
-      <div className="flex gap-10">
-      <p className="mt-5 text-2xl">{details?.price.toLocaleString("pt-BR", {
-                            style: "currency",
-                            currency: "BRL"
-                        })}</p>
-      <button className="mt-5 hover:scale-150 duration-200" onClick={() => gotToCart()}>
-        <BsFillCartPlusFill size={30} />
-        
-      </button>
+
+        <div className="w-full max-w-6xl">
+          <p className="mb-5 text-3xl font-semibold"> {details?.title}</p>
+          <p>{details?.description}</p>
+
+          <div className="flex gap-10">
+            <p className="mt-5 text-2xl">{details?.price.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL"
+            })}</p>
+            <button className="mt-5 hover:scale-150 duration-200" onClick={() => gotToCart()}>
+              <BsFillCartPlusFill size={30} />
+
+            </button>
+          </div>
+
+        </div>
       </div>
-   
-      </div>
-      
-     
-    
-      
-      </div>
-      
-     
-      
     </div>
   );
 }
