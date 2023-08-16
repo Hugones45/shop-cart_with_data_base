@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { BsFillCartPlusFill } from "react-icons/Bs"
+import { BsFillCartPlusFill } from "react-icons/bs"
 import { useProductsContext } from "../../context/ProductsContext"
 import { useNavigate } from "react-router-dom"
 

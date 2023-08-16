@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useProductsContext } from "../../context/ProductsContext";
-import { BsFillCartPlusFill } from "react-icons/Bs";
+import { BsFillCartPlusFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
 
 interface productsProps {

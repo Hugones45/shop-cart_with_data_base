@@ -121,7 +121,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
                 "content-type": "application/json"
             }
         }).then((resp) => resp.json())
-            .then((data) => setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id)))
+            .then((_data) => setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id)))
     }
 
     return (

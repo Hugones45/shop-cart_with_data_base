@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
-import { GiShoppingCart } from "react-icons/Gi"
-import { AiTwotoneShop } from "react-icons/Ai"
+import { GiShoppingCart } from "react-icons/gi"
+import { AiTwotoneShop } from "react-icons/ai"
 import { useProductsContext } from "../../context/ProductsContext"
 
 export function NavBar() {
