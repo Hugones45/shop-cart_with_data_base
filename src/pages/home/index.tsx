@@ -19,7 +19,7 @@ export function Home() {
 
     const [products, setProducts] = useState<productsProps[]>([])
 
-    const url = "http://localhost:3000/products"
+    const url = "https://shop-cart-itens.vercel.app/products"
 
     const getProductsData = async () => {
         const data = await fetch(url)
@@ -32,14 +32,14 @@ export function Home() {
         getProductsData()
     }, [])
 
-    function goDetails (item: number) {
+    function goDetails(item: number) {
         navigate(`/products/${item}`)
-    }   
+    }
 
     return (
         <div className="w-full max-w-6xl mx-auto mb-16 px-5">
 
-            <h1 className="text-center text-4xl m-5 font-bold text-zinc-500">Trending Products</h1>
+            <h1 className="text-center text-4xl m-5 font-bold text-zinc-500">Good Stuff!!</h1>
 
             <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
                 {products.map((item) => <section key={item.id} className="w-full cursor-pointer">

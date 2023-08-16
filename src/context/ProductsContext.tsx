@@ -28,7 +28,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
 
     const [user, setUser] = useState<cartProps[]>([])
 
-    const url = "http://localhost:3000/user"
+    const url = "https://shop-cart-itens.vercel.app/user"
 
     const getUser = () => {
         fetch(url)
@@ -40,16 +40,12 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
         getUser()
     }, [])
 
+
+
     async function AddCart(newItem: productsProps) {
 
-   {toast.success("Item adicionado ao carrinho!", {
-        style:{
-            borderRadius: "10",
-            background: "#121212",
-            color: "#fff"
-        }
-     })
-}
+        const checkId = user.some((item) => item.id === newItem.id)
+
         const newToCart = {
             id: newItem.id,
             title: newItem.title,
@@ -58,23 +54,42 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
             amount: newItem.amount
         }
 
-        const addProduct = await fetch(`${url}`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(newToCart)
-        })
+        if (!checkId) {
+            toast.success("Item adicionado ao carrinho!", {
+                style: {
+                    borderRadius: "10",
+                    background: "#121212",
+                    color: "#fff"
+                }
+            })
 
-        const instantPro = await addProduct.json()
-        setUser((prev) => [...prev, instantPro])
+            const addProduct = await fetch(`${url}`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(newToCart)
+            })
+
+            const instantPro = await addProduct.json()
+            setUser((prev) => [...prev, instantPro])
+
+        } else {
+            toast.error("O item já foi adicionado ao carrinho!", {
+                style: {
+                    borderRadius: "10",
+                    background: "#121212",
+                    color: "#fff"
+                }
+            })
+        }
     }
 
     async function PlusOrMinus(newItem: productsProps, action: string) {
         let newResult = newItem.amount
 
         if (action === "plus") {
-            if (newResult === 5) {
+            if (newResult === 6) {
                 return
             }
             newResult++
