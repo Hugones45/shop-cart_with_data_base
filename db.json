@@ -49,20 +49,5 @@
       "cover": "https://i.imgur.com/Ua4bURp.jpg"
     }
   ],
-  "user": [
-    {
-      "id": 1,
-      "title": "Airpods Apple, com Estojo de Recarga, Bluetooth",
-      "price": 120,
-      "cover": "https://i.imgur.com/uXrbyfA.jpg",
-      "amount": 1
-    },
-    {
-      "id": 5,
-      "title": "Soundbar LG SNH5, 4.1 Canais, Bluetooth, 600W RMS",
-      "price": 1099.99,
-      "cover": "https://i.imgur.com/w7SeQsa.jpg",
-      "amount": 1
-    }
-  ]
+  "user": []
 }

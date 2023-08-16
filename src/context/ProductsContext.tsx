@@ -1,6 +1,7 @@
 import { useState, useEffect, ReactNode, } from "react";
 import { useContext, createContext } from "react";
 import { productsProps } from "../pages/home";
+import toast from "react-hot-toast"
 
 interface ContextData {
     user: cartProps[],
@@ -40,6 +41,15 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
     }, [])
 
     async function AddCart(newItem: productsProps) {
+
+   {toast.success("Item adicionado ao carrinho!", {
+        style:{
+            borderRadius: "10",
+            background: "#121212",
+            color: "#fff"
+        }
+     })
+}
         const newToCart = {
             id: newItem.id,
             title: newItem.title,
@@ -97,7 +107,6 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
             }
         }).then((resp) => resp.json())
             .then((data) => setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id)))
-
     }
 
     return (
