@@ -51,17 +51,10 @@
   ],
   "user": [
     {
-      "id": 6,
-      "title": "Smartwatch Samsung Galaxy Watch 5, BT, 40mm",
-      "price": 1139,
-      "cover": "https://i.imgur.com/Ua4bURp.jpg",
-      "amount": 1
-    },
-    {
-      "id": 5,
-      "title": "Soundbar LG SNH5, 4.1 Canais, Bluetooth, 600W RMS",
-      "price": 1099.99,
-      "cover": "https://i.imgur.com/w7SeQsa.jpg",
+      "id": 4,
+      "title": "Monitor Gamer Husky Tempest 34",
+      "price": 2099.99,
+      "cover": "https://i.imgur.com/sRmbcWW.jpeg",
       "amount": 1
     }
   ]
