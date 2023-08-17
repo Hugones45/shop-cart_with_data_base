@@ -63,7 +63,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
                 }
             })
 
-            const addProduct = await fetch(`${url}`, {
+            const addProduct = await fetch("https://shop-cart-itens.vercel.app/user", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
