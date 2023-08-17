@@ -28,7 +28,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
 
     const [user, setUser] = useState<cartProps[]>([])
 
-    const url = "https://shop-cart-itens.vercel.app/user"
+    const url = "http://localhost:3000/user"
 
     const getUser = () => {
         fetch(url)
@@ -55,7 +55,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
         }
 
         if (!checkId) {
-            toast.success("Item adicionado ao carrinho!", {
+            toast.success("Item added to the cart!", {
                 style: {
                     borderRadius: "10",
                     background: "#121212",
@@ -63,7 +63,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
                 }
             })
 
-            const addProduct = await fetch("https://shop-cart-itens.vercel.app/user", {
+            const addProduct = await fetch("http://localhost:3000/user", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -75,7 +75,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
             setUser((prev) => [...prev, instantPro])
 
         } else {
-            toast.error("O item já foi adicionado ao carrinho!", {
+            toast.error("Item has already been added to the cart!", {
                 style: {
                     borderRadius: "10",
                     background: "#121212",
@@ -114,8 +114,8 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
         getUser()
     }
 
-    const DeleteProduct = (newItem: productsProps) => {
-        fetch(`${url}/${newItem.id}`, {
+    async function DeleteProduct(newItem: productsProps) {
+        await fetch(`${url}/${newItem.id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json"
