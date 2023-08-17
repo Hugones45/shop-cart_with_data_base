@@ -19,7 +19,7 @@ export function Home() {
 
     const [products, setProducts] = useState<productsProps[]>([])
 
-    const url = "http://localhost:3000/products"
+    const url = "https://shop-cart-itens.vercel.app/products"
 
     const getProductsData = async () => {
         const data = await fetch(url)

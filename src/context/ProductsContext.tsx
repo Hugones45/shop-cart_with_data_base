@@ -28,7 +28,7 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
 
     const [user, setUser] = useState<cartProps[]>([])
 
-    const url = "http://localhost:3000/user"
+    const url = "https://shop-cart-itens.vercel.app/user"
 
     const getUser = () => {
         fetch(url)

@@ -51,6 +51,20 @@
   ],
   "user": [
     {
+      "id": 2,
+      "title": "Notebook Gamer Lenovo Gaming 3i Intel Core i5-11300H",
+      "price": 379.9,
+      "cover": "https://i.imgur.com/bM5IUKe.jpg",
+      "amount": 1
+    },
+    {
+      "id": 3,
+      "title": "Teclado Mecânico Gamer HyperX Alloy",
+      "price": 199.99,
+      "cover": "https://i.imgur.com/ldh1Q8O.jpg",
+      "amount": 1
+    },
+    {
       "id": 4,
       "title": "Monitor Gamer Husky Tempest 34",
       "price": 2099.99,
