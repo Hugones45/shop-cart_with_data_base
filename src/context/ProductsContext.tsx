@@ -43,59 +43,47 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
 
 
     async function AddCart(newItem: productsProps) {
-        const checkId = user.some((item) => item.id === newItem.id);
+
+        const checkId = user.some((item) => item.id === newItem.id)
+
         const newToCart = {
             id: newItem.id,
             title: newItem.title,
             price: newItem.price,
             cover: newItem.cover,
-            amount: newItem.amount,
-        };
+            amount: newItem.amount
+        }
 
         if (!checkId) {
-            try {
-                // Step 1: Send POST request to add product
-                const addProductResponse = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(newToCart),
-                });
-
-                // Step 2: Check if the response is successful
-                if (addProductResponse.ok) {
-                    // Step 3: Parse the response JSON
-                    const instantPro = await addProductResponse.json();
-                    // Step 4: Update the user state with the new product
-                    setUser((prev) => [...prev, instantPro]);
-
-                    toast.success("Item adicionado ao carrinho!", {
-                        style: {
-                            borderRadius: "10px",
-                            background: "#121212",
-                            color: "#fff",
-                        },
-                    });
-                } else {
-                    console.error("Error adding product:", addProductResponse.statusText);
-                    // Handle error here if needed
+            toast.success("Item adicionado ao carrinho!", {
+                style: {
+                    borderRadius: "10",
+                    background: "#121212",
+                    color: "#fff"
                 }
-            } catch (error) {
-                console.error("Error adding product:", error);
-                // Handle error here if needed
-            }
+            })
+
+            const addProduct = await fetch(`${url}`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(newToCart)
+            })
+
+            const instantPro = await addProduct.json()
+            setUser((prev) => [...prev, instantPro])
+
         } else {
             toast.error("O item já foi adicionado ao carrinho!", {
                 style: {
-                    borderRadius: "10px",
+                    borderRadius: "10",
                     background: "#121212",
-                    color: "#fff",
-                },
-            });
+                    color: "#fff"
+                }
+            })
         }
     }
-
 
     async function PlusOrMinus(newItem: productsProps, action: string) {
         let newResult = newItem.amount
@@ -132,9 +120,8 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
             headers: {
                 "content-type": "application/json"
             }
-        });
-        await getUser(); // Wait for the user data to be updated
-        setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id))
+        }).then((resp) => resp.json())
+            .then((_data) => setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id)))
     }
 
     return (
