@@ -114,8 +114,8 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
         getUser()
     }
 
-    async function DeleteProduct(newItem: productsProps) {
-        await fetch(`${url}/${newItem.id}`, {
+    const DeleteProduct = (newItem: productsProps) => {
+        fetch(`${url}/${newItem.id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json"
