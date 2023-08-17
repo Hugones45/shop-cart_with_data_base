@@ -69,10 +69,11 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
                     "content-type": "application/json"
                 },
                 body: JSON.stringify(newToCart)
-            })
+            });
 
-            const instantPro = await addProduct.json()
-            setUser((prev) => [...prev, instantPro])
+            const instantPro = await addProduct.json();
+            await getUser();
+            setUser((prev) => [...prev, instantPro]);
 
         } else {
             toast.error("O item já foi adicionado ao carrinho!", {
@@ -120,8 +121,9 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
             headers: {
                 "content-type": "application/json"
             }
-        }).then((resp) => resp.json())
-            .then((_data) => setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id)))
+        });
+        await getUser(); // Wait for the user data to be updated
+        setUser((prev) => prev.filter((itemDel) => itemDel.id !== newItem.id))
     }
 
     return (
