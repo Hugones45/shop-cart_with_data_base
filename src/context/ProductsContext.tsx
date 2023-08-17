@@ -43,46 +43,50 @@ export const ProductsContextProvider = ({ children }: childrenProps) => {
 
 
     async function AddCart(newItem: productsProps) {
-
-        const checkId = user.some((item) => item.id === newItem.id)
-
+        const checkId = user.some((item) => item.id === newItem.id);
         const newToCart = {
             id: newItem.id,
             title: newItem.title,
             price: newItem.price,
             cover: newItem.cover,
-            amount: newItem.amount
-        }
+            amount: newItem.amount,
+        };
 
         if (!checkId) {
-            toast.success("Item adicionado ao carrinho!", {
-                style: {
-                    borderRadius: "10",
-                    background: "#121212",
-                    color: "#fff"
+            try {
+                const addProductResponse = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newToCart),
+                });
+
+                if (addProductResponse.ok) {
+                    const instantPro = await addProductResponse.json();
+                    setUser((prev) => [...prev, instantPro]);
+
+                    toast.success("Item adicionado ao carrinho!", {
+                        style: {
+                            borderRadius: "10px",
+                            background: "#121212",
+                            color: "#fff",
+                        },
+                    });
+                } else {
+                    console.error("Error adding product:", addProductResponse.statusText);
                 }
-            })
-
-            const addProduct = await fetch(`${url}`, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(newToCart)
-            });
-
-            const instantPro = await addProduct.json();
-            await getUser();
-            setUser((prev) => [...prev, instantPro]);
-
+            } catch (error) {
+                console.error("Error adding product:", error);
+            }
         } else {
             toast.error("O item já foi adicionado ao carrinho!", {
                 style: {
-                    borderRadius: "10",
+                    borderRadius: "10px",
                     background: "#121212",
-                    color: "#fff"
-                }
-            })
+                    color: "#fff",
+                },
+            });
         }
     }
 
